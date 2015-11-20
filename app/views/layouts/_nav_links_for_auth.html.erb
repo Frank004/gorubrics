@@ -1,7 +1,9 @@
-<% if user_signed_in? %>
-  <li><%= link_to 'Edit account', edit_user_registration_path %></li>
-  <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
+<% if member_signed_in? %>
+  <li><%= link_to 'Editar Cuenta', edit_member_registration_path %></li>
+  <li><%= link_to 'Destruir Sección', destroy_member_session_path, :method=>'delete' %></li>
 <% else %>
-  <li><%= link_to 'Sign in', new_user_session_path %></li>
-  <li><%= link_to 'Sign up', new_user_registration_path %></li>
+  <li class="<%= 'active' if current_page?(new_member_session_path) %>" >
+  	<%= link_to 'Iniciar Sección', new_member_session_path %></li>
+  <li class="<%= 'active' if current_page?(new_member_registration_path) %>">
+  	<%= link_to 'Regristración', new_member_registration_path %></li>
 <% end %>

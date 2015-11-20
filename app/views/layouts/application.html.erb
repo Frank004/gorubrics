@@ -2,19 +2,54 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Applicación de Tabulación/Rubricas/Evaluaciones/Puntuación">
+    <meta name="author" content="francisco Quiñones Medina">
     <title><%= content_for?(:title) ? yield(:title) : "Gorubrics" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Gorubrics" %>">
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "GoRubrics" %>">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
-  <body>
+  <body id="page-top" class="index" cz-shortcut-listen="true"> 
     <header>
-      <%= render 'layouts/navigation' %>
+      <%= render 'navigation' %>
     </header>
     <main role="main">
        <%= render 'layouts/messages' %>
        <%= yield %>
     </main>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright © www.go-rubrics.com 2015</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Política de Privacidad</a>
+                        </li>
+                        <li><a href="#">Términos de uso</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
   </body>
 </html>
