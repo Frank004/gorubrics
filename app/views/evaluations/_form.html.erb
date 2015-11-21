@@ -1,0 +1,45 @@
+<%= form_for(@evaluation) do |f| %>
+  <% if @evaluation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@evaluation.errors.count, "error") %> prohibited this evaluation from being saved:</h2>
+
+      <ul>
+      <% @evaluation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :note %><br>
+    <%= f.text_area :note %>
+  </div>
+  <div class="field">
+    <%= f.label :total_score %><br>
+    <%= f.number_field :total_score %>
+  </div>
+  <div class="field">
+    <%= f.label :participant_id %><br>
+    <%= f.text_field :participant_id %>
+  </div>
+  <div class="field">
+    <%= f.label :member_id %><br>
+    <%= f.text_field :member_id %>
+  </div>
+  <div class="field">
+    <%= f.label :evaluation_builder_id %><br>
+    <%= f.text_field :evaluation_builder_id %>
+  </div>
+  <div class="field">
+    <%= f.label :event_id %><br>
+    <%= f.text_field :event_id %>
+  </div>
+  <div class="field">
+    <%= f.label :organization_id %><br>
+    <%= f.text_field :organization_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

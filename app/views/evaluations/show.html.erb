@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @evaluation.note %>
+</p>
+
+<p>
+  <strong>Total score:</strong>
+  <%= @evaluation.total_score %>
+</p>
+
+<p>
+  <strong>Participant:</strong>
+  <%= @evaluation.participant_id %>
+</p>
+
+<p>
+  <strong>Member:</strong>
+  <%= @evaluation.member_id %>
+</p>
+
+<p>
+  <strong>Evaluation builder:</strong>
+  <%= @evaluation.evaluation_builder_id %>
+</p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @evaluation.event_id %>
+</p>
+
+<p>
+  <strong>Organization:</strong>
+  <%= @evaluation.organization_id %>
+</p>
+
+<%= link_to 'Edit', edit_evaluation_path(@evaluation) %> |
+<%= link_to 'Back', evaluations_path %>

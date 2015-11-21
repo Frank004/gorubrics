@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row">
+    <div class="container col-xs-12 col-md-8 col-lg-6 col-lg-offset-1">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= @organization.name %></h3>
+        </div>
+        <div class="panel-body">
+
+                <p>
+                  <strong>Name:</strong>
+                  <%= @organization.name %>
+                </p>
+
+                <p>
+                  <strong>Phone:</strong>
+                  <%= @organization.phone %>
+                </p>
+
+                <p>
+                  <strong>City:</strong>
+                  <%= @organization.city %>
+                </p>
+
+                <p>
+                  <strong>Country:</strong>
+                  <%= @organization.country %>
+                </p>
+
+                <p>
+                  <strong>Website:</strong>
+                  <%= @organization.website %>
+                </p>
+
+                <p>
+                  <strong>Facebook:</strong>
+                  <%= @organization.facebook %>
+                </p>
+
+                <p>
+                  <strong>Twitter:</strong>
+                  <%= @organization.twitter %>
+                </p>
+
+                <p>
+                  <strong>Instagram:</strong>
+                  <%= @organization.instagram %>
+                </p>             
+                <hr>
+    <%= link_to 'Editar', edit_organization_path(@organization), class: "btn btn-warning" %>
+        </div>
+      </div>
+    </div>
+
+
+      <div class="container col-xs-12 col-md-4 col-lg-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Próximos Eventos</h3>
+        </div>
+        <div class="panel-body">
+          <% @organization.events.each do |event| %>
+            <strong><%= link_to event.title, event %></strong>
+              <% end %>    
+                <hr>
+    <%= link_to 'Lista de Eventos', organization_events_path(@organization), class: "btn btn-warning" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

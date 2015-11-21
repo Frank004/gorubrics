@@ -17,11 +17,11 @@
             <%= f.label :email, "Email" %>
             <%= f.email_field :email, class: 'form-control' %>
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+              <div>Actualmente se espera la confirmación for: <%= resource.unconfirmed_email %></div>
             <% end %>
           </div>
           <fieldset>
-            <p>Leave these fields blank if you don't want to change your password.</p>
+            <p>Deje estos campos en blanco si no desea cambiar su contraseña.</p>
             <div class="form-group">
               <%= f.label :password %>
               <%= f.password_field :password, :autocomplete => 'off', class: 'form-control' %>
@@ -32,7 +32,7 @@
             </div>
           </fieldset>
           <fieldset>
-            <p>You must enter your current password to make changes.</p>
+            <p>Debe introducir la contraseña actual para realizar cambios.</p>
             <div class="form-group">
               <%= f.label :current_password %>
               <%= f.password_field :current_password, class: 'form-control' %>

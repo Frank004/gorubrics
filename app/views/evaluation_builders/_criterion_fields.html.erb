@@ -1,0 +1,10 @@
+<div class='fieldset'>
+  <hr/>
+  <h4>Criterios</h4>
+    <div class='form-group'>
+      <%= f.label :name, class: 'sr-only' %>
+      <%= f.text_field :name, placeholder: 'Nombre del criterio', class: 'form-control' %>
+    </div>
+      <%= f.hidden_field :_destroy %>
+  <%= link_to "remove", '#', class: "remove_fields" %>
+</div>

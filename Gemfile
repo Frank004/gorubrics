@@ -17,8 +17,16 @@ group :development do
   gem 'spring'
 end
 
+#File Upload
+gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+
+#UI
+gem "select2-rails"
 gem "font-awesome-rails"
 # gem 'bootstrap-sass'
+
+
+
 gem 'devise'
 gem 'devise-i18n'
 gem 'high_voltage'

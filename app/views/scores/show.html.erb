@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Overall score:</strong>
+  <%= @score.overall_score %>
+</p>
+
+<p>
+  <strong>Participant:</strong>
+  <%= @score.participant_id %>
+</p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @score.event_id %>
+</p>
+
+<p>
+  <strong>Evaluation:</strong>
+  <%= @score.evaluation_id %>
+</p>
+
+<%= link_to 'Edit', edit_score_path(@score) %> |
+<%= link_to 'Back', scores_path %>

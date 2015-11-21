@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @character.name %>
+</p>
+
+<p>
+  <strong>Series:</strong>
+  <%= @character.series %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @character.type %>
+</p>
+
+<p>
+  <strong>Participant:</strong>
+  <%= @character.participant_id %>
+</p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @character.event_id %>
+</p>
+
+<p>
+  <strong>Organization:</strong>
+  <%= @character.organization_id %>
+</p>
+
+<%= link_to 'Edit', edit_character_path(@character) %> |
+<%= link_to 'Back', characters_path %>

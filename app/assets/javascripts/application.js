@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.turbolinks
 //= require js/agency
+//= require select2
 //= require js/jquery.easing
 //= require js/classie
 //= require js/bootstrap.min
@@ -34,5 +35,13 @@ $(function() {
     return $(".alert").fadeOut();
   }, this));
   return setTimeout(flashCallback, 5000);
+  });
+});
+
+
+// -------------------flash messages timeouts timmer --------------------------\\\\
+$(document).ready(function() {
+$( ".select2" ).select2({
+    theme: "bootstrap"
   });
 });

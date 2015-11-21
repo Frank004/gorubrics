@@ -1,0 +1,12 @@
+class CreateEvaluationBuilders < ActiveRecord::Migration
+  def change
+    create_table :evaluation_builders do |t|
+      t.string :name
+      t.references :event, index: true, foreign_key: true
+      t.references :organization, index: true, foreign_key: true
+      t.references :category, index: true, foreign_key: true
+
+      t.timestamps null: false
+    end
+  end
+end

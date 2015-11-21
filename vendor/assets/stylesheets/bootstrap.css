@@ -3257,7 +3257,7 @@ fieldset[disabled] .btn-success.active {
   color: #fff;
   background-color: #5bc0de;
   border-color: #46b8da;
-  padding: 10px 30px;
+      padding: 10px 30px;
 }
 .btn-info:focus,
 .btn-info.focus {
@@ -3324,7 +3324,6 @@ fieldset[disabled] .btn-info.active {
   color: #fff;
   background-color: #f0ad4e;
   border-color: #eea236;
-  padding: 10px 30px;
 }
 .btn-warning:focus,
 .btn-warning.focus {
