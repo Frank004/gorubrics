@@ -1,39 +1,43 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-xs-12 col-lg-8 col-lg-offset-3 animated">
+    <div class="page-header">
+      <h1 class="pull-left">
+        <i class="icon-building"></i>
+        <%= @event.organization.name %>
+      </h1>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="container col-xs-12 col-lg-6 col-lg-offset-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @event.title %></h3>
+      </div>
+      <div class="panel-body">
+        <p>
+          <strong>Participante:</strong>
+          <%= @evaluation.participant.full_name %>
+        </p>
+        <p>
+          <strong>Comentario:</strong>
+          <%= @evaluation.note %>
+        </p>
+        <p>
+          <strong>Puntuación:</strong>
+          <%= @evaluation.total_score %>
+        </p>
+          <hr>
+          <% @evaluation.points.each do |point|%>
+              <ul>
+                <li><%= point.criterion.name %> - <%= point.criterion_value %> </li>
+              </ul>
+          <% end %>
+              <br>
+  <%= link_to 'Editar', edit_evaluation_path(@evaluation) , class: "btn btn-warning" %>
+  <%= link_to 'Regresar',event_evaluations_path(@event),class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Note:</strong>
-  <%= @evaluation.note %>
-</p>
-
-<p>
-  <strong>Total score:</strong>
-  <%= @evaluation.total_score %>
-</p>
-
-<p>
-  <strong>Participant:</strong>
-  <%= @evaluation.participant_id %>
-</p>
-
-<p>
-  <strong>Member:</strong>
-  <%= @evaluation.member_id %>
-</p>
-
-<p>
-  <strong>Evaluation builder:</strong>
-  <%= @evaluation.evaluation_builder_id %>
-</p>
-
-<p>
-  <strong>Event:</strong>
-  <%= @evaluation.event_id %>
-</p>
-
-<p>
-  <strong>Organization:</strong>
-  <%= @evaluation.organization_id %>
-</p>
-
-<%= link_to 'Edit', edit_evaluation_path(@evaluation) %> |
-<%= link_to 'Back', evaluations_path %>

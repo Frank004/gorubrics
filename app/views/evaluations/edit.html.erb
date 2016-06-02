@@ -1,6 +1,13 @@
-<h1>Editing Evaluation</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @evaluation %> |
-<%= link_to 'Back', evaluations_path %>
+<br>
+<div class="col-md-5 col-md-offset-3 col-lg-offset-3">
+  <h1>Editar Evaluación</h1>
+  <div class="authform well">
+	<%= form_for(@evaluation, :html => { :class => 'form survey-form clearfix' }) do |f| %>
+	 <%= render 'form', f: f %>
+	  <div class="actions">
+	    <%= f.submit "Actualizar",  class: 'btn btn-warning' %>
+    	<%= link_to 'regresar', event_evaluations_path(@event),  class: 'btn btn-primary'  %>
+	  </div>
+	<% end %>
+  </div>
+</div>

@@ -3,6 +3,9 @@
   <h1>Listing Evaluaciones</h1>
   </div>
   <div class="pull-right">
+    <%= link_to event_path(@event) , class: 'btn btn-primary' do%>
+      Regresar
+    <% end %>
     <%= link_to new_event_evaluation_builder_path(@event) , class: 'btn btn-success' do%>
       <i class="fa fa-plus"></i>
     <% end %>

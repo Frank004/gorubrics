@@ -1,31 +1,56 @@
-<div class="row">
-  <div class="col-xs-12 col-lg-8 col-lg-offset-3 animated">
-    <div class="page-header">
-      <h1 class="pull-left">
-        <i class="icon-building"></i>
-        <%= @event.organization.name %>
-      </h1>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="container col-xs-12 col-lg-6 col-lg-offset-3">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= @event.title %></h3>
-      </div>
-      <div class="panel-body">
-        <span><strong>Inicia: </strong> <%= @event.start_date.strftime('%d/%b/%Y')  %></span><br> 
-        <span><strong>Termina:</strong> <%= @event.end_date.strftime('%d/%b/%Y')  %></span> <br> 
-                <strong>Lugar:</strong> <%= @event.place %> <br>  
-                <strong>Ciudad:</strong><%= @event.city %> <br>
-                <strong>Pais:</strong><%= @event.country %>              
-              <hr>
-  <%= link_to 'Editar', edit_event_path(@event), class: "btn btn-warning" %>
-  <%= link_to 'Regresar', organization_events_path(@organization),class: "btn btn-primary" %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-lg-8 col-lg-offset-3 animated">
+      <div class="page-header">
+        <h1 class="pull-left">
+          <i class="icon-building"></i>
+          <%= @event.organization.name %>
+        </h1>
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class=" col-xs-12 col-lg-9">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= @event.title %></h3>
+        </div>
+        <div class="panel-body">
+          <span><strong>Inicia: </strong> <%= @event.start_date.strftime('%d/%b/%Y')  %></span><br>
+          <span><strong>Termina:</strong> <%= @event.end_date.strftime('%d/%b/%Y')  %></span> <br>
+                  <strong>Lugar:</strong> <%= @event.place %> <br>
+                  <strong>Ciudad:</strong><%= @event.city %> <br>
+                  <strong>Pais:</strong><%= @event.country %>
+                <br>
+                <br>
+                <br>
+                <hr>
+    <%= link_to 'Editar', edit_event_path(@event), class: "btn btn-warning" %>
+    <%= link_to 'Lista de Eventos', organization_events_path(@organization),class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+
+    <div class=" col-xs-12 col-lg-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Menu de Entrada</h3>
+        </div>
+        <div class="panel-body">
+          <p>
+          <%= link_to 'Crear Rubrica', event_evaluation_builders_path(@event), class: "btn btn-warning" %>
+           </p>
+          <p>
+           <%= link_to 'Registro', new_event_participant_path(@event), class: "btn btn-warning"  %>
+          </p>
+          <p>
+           <%= link_to 'Participante ', event_participants_path(@event), class: "btn btn-warning" if @event.participants.present? %>
+          </p>
+          <p>
+           <%= link_to 'Evaluciones', event_evaluations_path(@event), class: "btn btn-warning" if @event.evaluation_builders.present?%>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-

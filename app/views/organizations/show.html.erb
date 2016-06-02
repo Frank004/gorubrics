@@ -45,7 +45,7 @@
                 <p>
                   <strong>Instagram:</strong>
                   <%= @organization.instagram %>
-                </p>             
+                </p>
                 <hr>
     <%= link_to 'Editar', edit_organization_path(@organization), class: "btn btn-warning" %>
         </div>
@@ -53,17 +53,16 @@
     </div>
 
 
-      <div class="container col-xs-12 col-md-4 col-lg-4">
+    <div class="container col-xs-12 col-md-4 col-lg-4">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">Próximos Eventos</h3>
+          <div class="pull-right"> <%= link_to 'Ver todos', organization_events_path(@organization)%></div>
+          <h3 class="panel-title">Próximos Eventos</h3> 
         </div>
         <div class="panel-body">
           <% @organization.events.each do |event| %>
             <strong><%= link_to event.title, event %></strong>
-              <% end %>    
-                <hr>
-    <%= link_to 'Lista de Eventos', organization_events_path(@organization), class: "btn btn-warning" %>
+          <% end %>
         </div>
       </div>
     </div>

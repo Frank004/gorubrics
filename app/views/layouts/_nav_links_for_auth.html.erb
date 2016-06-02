@@ -1,4 +1,6 @@
 <% if member_signed_in? %>
+  <li><%= link_to 'Organización', organization_path(current_member.organization) %></li>
+  <li><%= link_to 'Eventos', organization_events_path(current_member.organization) %></li>
   <li><%= link_to 'Editar Cuenta', edit_member_registration_path %></li>
   <li><%= link_to 'Destruir Sección', destroy_member_session_path, :method=>'delete' %></li>
 <% else %>

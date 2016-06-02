@@ -1,11 +1,11 @@
 class EvaluationsController < ApplicationController
   before_action :set_evaluation, only: [:show, :edit, :update, :destroy]
-  # before_action :set_organization, only: [:new,:create,:index]
-  # before_action :set_event, only: [:new,:create,:index]
+  before_action :set_event, only: [:new,:create,:index]
+  before_action :set_organization, only: [:new,:create,:index]
   # GET /evaluations
   # GET /evaluations.json
   def index
-    @evaluations = Evaluation.all
+    @evaluations = @event.evaluations
   end
 
   # GET /evaluations/1
@@ -15,18 +15,24 @@ class EvaluationsController < ApplicationController
 
   # GET /evaluations/new
   def new
-    @evaluation = Evaluation.new
-  end
+    @evaluation = @event.evaluations.new(
+    evaluation_builder_id: params[:evaluation_builder_id],
+    participant_id: params[:participant_id])
+    @evaluation.points.build
+    @evaluation_builder = EvaluationBuilder.find(params[:evaluation_builder_id])
+    @participant = Participant.find(params[:participant_id])
+   end
 
   # GET /evaluations/1/edit
   def edit
+    @evaluation_builder= @evaluation.evaluation_builder
   end
 
   # POST /evaluations
   # POST /evaluations.json
   def create
-    @evaluation = Evaluation.new(evaluation_params)
-
+    @evaluation = @event.evaluations.new(evaluation_params)
+    @evaluation.organization_id = @event.organization.id
     respond_to do |format|
       if @evaluation.save
         format.html { redirect_to @evaluation, notice: 'Evaluation was successfully created.' }
@@ -66,18 +72,20 @@ class EvaluationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_evaluation
       @evaluation = Evaluation.find(params[:id])
-      # @event = @evaluation.event
-      # @organization = @evaluation.organization
+      @event = @evaluation.event
+      @organization = @evaluation.organization
     end
-    # def set_organization
-    #   @organization = Organization.find(params[:organization_id])
-    # end  
-    # def set_event
-    #   @event = Event.find(params[:event_id])
-    # end  
-
+    def set_organization
+      @organization = @event.organization
+    end  
+    def set_event
+      @event = Event.find(params[:event_id])
+    end   
     # Never trust parameters from the scary internet, only allow the white list through.
     def evaluation_params
-      params.require(:evaluation).permit(:note, :total_score, :participant_id, :member_id, :evaluation_builder_id, :event_id, :organization_id)
+      params.require(:evaluation).permit(:note, :total_score, :participant_id,
+        :member_id, :evaluation_builder_id, :event_id, :organization_id,
+        evaluation_builder_attributes: [:id,:name], criterions_attributes: [:id,:name],
+        points_attributes: [:id,:criterion_value,:criterion_id,:event_id,:organization_id])
     end
 end

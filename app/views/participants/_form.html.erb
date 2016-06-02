@@ -1,4 +1,3 @@
-<%= form_for(@participant) do |f| %>
   <% if @participant.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@participant.errors.count, "error") %> prohibited this participant from being saved:</h2>
@@ -11,43 +10,31 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
+  <div class="form-group">
+    <%= f.label :first_name, "Nombre" %><br>
+    <%= f.text_field :first_name, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
+  <div class="form-group">
+    <%= f.label :last_name,"Apellido" %><br>
+    <%= f.text_field :last_name, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :age %><br>
-    <%= f.number_field :age %>
+  <div class="form-group">
+    <%= f.label :age, "Edad" %><br>
+    <%= f.text_field   :age, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :city %><br>
-    <%= f.text_field :city %>
+  <div class="form-group">
+    <%= f.label :city,"Ciudad" %><br>
+    <%= f.text_field :city, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
+  <div class="form-group">
+    <%= f.label :email, "Email" %><br>
+    <%= f.text_field :email, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
+  <div class="form-group">
+    <%= f.label :phone, "Télefono" %><br>
+    <%= f.text_field :phone, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :event_id %><br>
-    <%= f.text_field :event_id %>
-  </div>
-  <div class="field">
-    <%= f.label :charater_id %><br>
-    <%= f.number_field :charater_id %>
-  </div>
-  <div class="field">
-    <%= f.label :organization_id %><br>
-    <%= f.text_field :organization_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+
+    <%= f.fields_for :character do |builder| %>
+      <%= render 'character_fields', f: builder %>
+    <% end %>

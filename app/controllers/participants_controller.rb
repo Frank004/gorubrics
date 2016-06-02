@@ -1,11 +1,11 @@
 class ParticipantsController < ApplicationController
   before_action :set_participant, only: [:show, :edit, :update, :destroy]
-  # before_action :set_organization, only: [:new,:create,:index]
-  # before_action :set_event, only: [:new,:create,:index]
+  before_action :set_event, only: [:new,:create,:index]
+  before_action :set_organization, only: [:new,:create,:index]
   # GET /participants
   # GET /participants.json
   def index
-    @participants = Participant.all
+    @participants = @event.participants
   end
 
   # GET /participants/1
@@ -15,7 +15,8 @@ class ParticipantsController < ApplicationController
 
   # GET /participants/new
   def new
-    @participant = Participant.new
+    @participant = @event.participants.new
+    @participant.build_character
   end
 
   # GET /participants/1/edit
@@ -25,8 +26,8 @@ class ParticipantsController < ApplicationController
   # POST /participants
   # POST /participants.json
   def create
-    @participant = Participant.new(participant_params)
-
+    @participant = @event.participants.new(participant_params)
+    @participant.organization_id = @event.organization.id
     respond_to do |format|
       if @participant.save
         format.html { redirect_to @participant, notice: 'Participant was successfully created.' }
@@ -57,7 +58,7 @@ class ParticipantsController < ApplicationController
   def destroy
     @participant.destroy
     respond_to do |format|
-      format.html { redirect_to participants_url, notice: 'Participant was successfully destroyed.' }
+      format.html { redirect_to event_participants_url(@event), notice: 'Participant was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -66,17 +67,17 @@ class ParticipantsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_participant
       @participant = Participant.find(params[:id])
-      # @event = @participant.event
-      # @organization = @participant.organization
+      @event = @participant.event
+      @organization = @participant.organization
     end
-    # def set_organization
-    #   @organization = Organization.find(params[:organization_id])
-    # end  
-    # def set_event
-    #   @event = Event.find(params[:event_id])
-    # end  
+    def set_organization
+      @organization = @event.organization
+    end  
+    def set_event
+      @event = Event.find(params[:event_id])
+    end  
     # Never trust parameters from the scary internet, only allow the white list through.
     def participant_params
-      params.require(:participant).permit(:first_name, :last_name, :age, :city, :email, :phone, :event_id, :charater_id, :organization_id)
+      params.require(:participant).permit(:first_name, :last_name, :age, :city, :email, :phone, :event_id, :organization_id, character_attributes: [:id,:name,:series,:category])
     end
 end

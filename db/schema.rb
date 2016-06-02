@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151121062417) do
+ActiveRecord::Schema.define(version: 20151123130247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20151121062417) do
   create_table "characters", force: :cascade do |t|
     t.string   "name"
     t.string   "series"
-    t.string   "type"
+    t.string   "category"
     t.integer  "participant_id"
     t.integer  "event_id"
     t.integer  "organization_id"
@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 20151121062417) do
 
   create_table "criterions", force: :cascade do |t|
     t.string   "name"
-    t.integer  "points"
     t.integer  "evaluation_builder_id"
     t.integer  "organization_id"
     t.datetime "created_at",            null: false
@@ -115,12 +114,13 @@ ActiveRecord::Schema.define(version: 20151121062417) do
     t.string   "city"
     t.string   "country"
     t.integer  "organization_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.boolean  "status",            default: false
   end
 
   add_index "events", ["organization_id"], name: "index_events_on_organization_id", using: :btree
@@ -183,7 +183,6 @@ ActiveRecord::Schema.define(version: 20151121062417) do
     t.string   "email"
     t.string   "phone"
     t.string   "event_id"
-    t.integer  "charater_id"
     t.integer  "organization_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
@@ -194,6 +193,21 @@ ActiveRecord::Schema.define(version: 20151121062417) do
   end
 
   add_index "participants", ["organization_id"], name: "index_participants_on_organization_id", using: :btree
+
+  create_table "points", force: :cascade do |t|
+    t.integer  "criterion_value"
+    t.integer  "evaluation_id"
+    t.integer  "event_id"
+    t.integer  "organization_id"
+    t.integer  "criterion_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "points", ["criterion_id"], name: "index_points_on_criterion_id", using: :btree
+  add_index "points", ["evaluation_id"], name: "index_points_on_evaluation_id", using: :btree
+  add_index "points", ["event_id"], name: "index_points_on_event_id", using: :btree
+  add_index "points", ["organization_id"], name: "index_points_on_organization_id", using: :btree
 
   create_table "promos", force: :cascade do |t|
     t.string   "title"
@@ -219,13 +233,11 @@ ActiveRecord::Schema.define(version: 20151121062417) do
     t.integer  "overall_score"
     t.integer  "participant_id"
     t.integer  "event_id"
-    t.integer  "evaluation_id"
     t.integer  "organization_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
-  add_index "scores", ["evaluation_id"], name: "index_scores_on_evaluation_id", using: :btree
   add_index "scores", ["event_id"], name: "index_scores_on_event_id", using: :btree
   add_index "scores", ["organization_id"], name: "index_scores_on_organization_id", using: :btree
   add_index "scores", ["participant_id"], name: "index_scores_on_participant_id", using: :btree
@@ -264,9 +276,12 @@ ActiveRecord::Schema.define(version: 20151121062417) do
   add_foreign_key "member_roles", "members"
   add_foreign_key "member_roles", "roles"
   add_foreign_key "participants", "organizations"
+  add_foreign_key "points", "criterions"
+  add_foreign_key "points", "evaluations"
+  add_foreign_key "points", "events"
+  add_foreign_key "points", "organizations"
   add_foreign_key "promos", "events"
   add_foreign_key "promos", "organizations"
-  add_foreign_key "scores", "evaluations"
   add_foreign_key "scores", "events"
   add_foreign_key "scores", "organizations"
   add_foreign_key "scores", "participants"

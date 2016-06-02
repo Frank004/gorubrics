@@ -1,5 +1,15 @@
-<h1>New Evaluation</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', evaluations_path %>
+<br>
+<div class="col-md-5 col-md-offset-3 col-lg-offset-3">
+  <h3>Evaluación <%= @participant.full_name %> </h3>
+  <div class="authform well">
+	<%= form_for([@event,@evaluation], :html => { :class => 'form survey-form clearfix' }) do |f| %>
+  <%= f.hidden_field :evaluation_builder_id %>
+  <%= f.hidden_field :participant_id %>
+	 <%= render 'form', f: f %>
+	  <div class="actions">
+	    <%= f.submit "Crear",  class: 'btn btn-warning' %>
+    	<%= link_to 'regresar', event_evaluations_path(@event),  class: 'btn btn-primary'  %>
+	  </div>
+	<% end %>
+  </div>
+</div>

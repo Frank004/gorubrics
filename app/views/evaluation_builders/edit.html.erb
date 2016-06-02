@@ -2,7 +2,7 @@
 <div class="col-md-5 col-md-offset-3 col-lg-offset-3">
   <h1>Editar Evaluación</h1>
   <div class="authform well">
-	<%= form_for(@evaluation_builder, :html => { :class => 'form survey-form clearfix' }) do |f| %>
+	<%= form_for(@evaluation_builder, :html => { :class => 'form ' }) do |f| %>
 	 <%= render 'form', f: f %>
 	  <div class="actions">
 	    <%= f.submit "Actualizar",  class: 'btn btn-warning' %>

@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   
   root to: 'visitors#index'
   devise_for :members
-
+  authenticated do
+    root 'event#index', :as => "eventos"
+  end
   resources :organizations, shallow: true do
     resources :categories, :except => [:show]
     resources :events, shallow: true do

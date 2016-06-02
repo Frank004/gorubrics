@@ -1,0 +1,17 @@
+<div class='fieldset'>
+  <hr/>
+  <h4>Info Personaje</h4>
+    <div class='form-group'>
+      <%= f.label :name,"Nombre", class: 'sr-only' %>
+      <%= f.text_field :name, placeholder: 'Nombre del personaje', class: 'form-control' %>
+    </div>
+    <div class='form-group'>
+      <%= f.label :series,"Serie", class: 'sr-only' %>
+      <%= f.text_field :series, placeholder: 'Nombre de la Serie', class: 'form-control' %>
+    </div>
+    
+    <div class='form-group'>
+      <%= f.label :category,"Tipo", class: 'sr-only' %>
+      <%= f.select(:category,[['Comic'],['Manga'],['Película'],['Serie'],['Original']],{ class: 'form-control select2' })%>
+    </div>
+</div>

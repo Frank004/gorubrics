@@ -14,6 +14,8 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
           <ul class="nav navbar-nav">
+              <li><%= link_to 'Organización', organization_path(current_member.organization) %></li>
+              <li><%= link_to 'Eventos', organization_events_path(@organization) %></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div>

@@ -1,49 +1,81 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-xs-12 col-lg-8 col-lg-offset-3 animated">
+    <div class="page-header">
+      <h1 class="pull-left">
+        <i class="icon-building"></i>
+        <%= @event.organization.name %>
+      </h1>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="container col-xs-12 col-lg-6 col-lg-offset-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @event.title %></h3>
+      </div>
+      <div class="panel-body">
+          <div class="row">
+          <div class="col-xs-12 col-lg-6">
+          <p>
+            <strong>Nombre:</strong>
+            <%= @participant.first_name %>
+          </p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @participant.first_name %>
-</p>
+          <p>
+            <strong>Apellido:</strong>
+            <%= @participant.last_name %>
+          </p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @participant.last_name %>
-</p>
+          <p>
+            <strong>Edad:</strong>
+            <%= @participant.age %>
+          </p>
 
-<p>
-  <strong>Age:</strong>
-  <%= @participant.age %>
-</p>
+          <p>
+            <strong>Ciudad:</strong>
+            <%= @participant.city %>
+          </p>
 
-<p>
-  <strong>City:</strong>
-  <%= @participant.city %>
-</p>
+          <p>
+            <strong>Email:</strong>
+            <%= @participant.email %>
+          </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @participant.email %>
-</p>
+          <p>
+            <strong>Télefono:</strong>
+            <%= @participant.phone %>
+          </p>
+          <p>
+            <strong>Nombre de Personaje:</strong>
+           <%= @participant.character.name%>
+          </p>
+          <p>
+            <strong>Serie:</strong>
+           <%= @participant.character.series%>
+          </p>
+          <p>
+            <strong>Clasificacíon:</strong>
+           <%= @participant.character.category%>
+          </p>
+          </div>
+          <div class="col-xs-12 col-lg-6">
+            <h3> Puntuación Final:<%= @participant.score.overall_score%> <% @participant.sumery_score%> </h3>
+            <% @participant.evaluations.each do |evaluation|%>
+           
+            <ul class="list-group">
+              <li class="list-group-item">
+                <strong>Puntuación:</strong> <h1><%= evaluation.total_score %></h1>
+              </li>
+            </ul>
+            <% end %>
+          </div>
+        </div>
+        <hr>
+  <%= link_to 'Editar', edit_participant_path(@participant) , class: "btn btn-warning" %>
+  <%= link_to 'Regresar',event_participants_path(@event),class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @participant.phone %>
-</p>
-
-<p>
-  <strong>Event:</strong>
-  <%= @participant.event_id %>
-</p>
-
-<p>
-  <strong>Charater:</strong>
-  <%= @participant.charater_id %>
-</p>
-
-<p>
-  <strong>Organization:</strong>
-  <%= @participant.organization_id %>
-</p>
-
-<%= link_to 'Edit', edit_participant_path(@participant) %> |
-<%= link_to 'Back', participants_path %>
